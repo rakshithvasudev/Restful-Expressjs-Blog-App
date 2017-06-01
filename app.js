@@ -46,13 +46,22 @@ app.get("/blogs/new", function (req, res) {
 });
 
 app.post("/blogs", function (req, res) {
-    //req,body.blog contains all the attributes of blog.
+    // var currentBlog = {
+    //     title: req.body.blogtitle,
+    //     image: req.body.blogimage,
+    //     body : req.body.blogbody
+    // };
+
     Blog.create(req.body.blog,function (err,blogItem) {
        if(err)
            console.log("Error :" + err);
-       else
+       else{
            console.log("Added : "+ blogItem);
+           res.redirect("/blogs")
+       }
+
     });
+
 });
 
 app.listen(3000, function () {
