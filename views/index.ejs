@@ -1,1 +1,9 @@
 <h1>This is the index</h1>
+<% blogs.forEach(function (blog) { %>
+    <div class="blog">
+        <h2> <%= blog.title%></h2>
+        <img src="<%= blog.image%>">
+        <span><%= blog.description%></span>
+        <p><%= blog.created%></p>
+    </div>
+<%})%>
