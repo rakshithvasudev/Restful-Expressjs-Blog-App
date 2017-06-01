@@ -46,12 +46,6 @@ app.get("/blogs/new", function (req, res) {
 });
 
 app.post("/blogs", function (req, res) {
-    // var currentBlog = {
-    //     title: req.body.blogtitle,
-    //     image: req.body.blogimage,
-    //     body : req.body.blogbody
-    // };
-
     Blog.create(req.body.blog,function (err,blogItem) {
        if(err)
            console.log("Error :" + err);
