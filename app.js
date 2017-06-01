@@ -71,11 +71,18 @@ app.post("/blogs", function (req, res) {
 /**
  * Show route
  */
-app.get("/blogs/:id",function (req,res) {
-   res.send("Welcome to id :" + req.params.id);
+app.get("/blogs/:id", function (req, res) {
+    Blog.findById(req.params.id, function (err, blogItem) {
+        if (err)
+            console.log("Error occurred : " + err);
+        else
+            res.render("show", {blog: blogItem});
+    });
 });
 
-
+/**
+ * Server setup
+ */
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });
