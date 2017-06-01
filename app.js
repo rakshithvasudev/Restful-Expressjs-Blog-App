@@ -32,6 +32,10 @@ app.get('/', function (req, res) {
     res.redirect("/blogs");
 });
 
+/**
+ * Index route
+ */
+
 app.get("/blogs", function (req, res) {
     Blog.find({}, function (err, blogs) {
         if (err)
@@ -41,22 +45,36 @@ app.get("/blogs", function (req, res) {
     });
 });
 
+/**
+ * Add new blog route
+ */
 app.get("/blogs/new", function (req, res) {
     res.render("new")
 });
 
+/**
+ * Post request from (new) route.
+ */
 app.post("/blogs", function (req, res) {
-    Blog.create(req.body.blog,function (err,blogItem) {
-       if(err)
-           console.log("Error :" + err);
-       else{
-           console.log("Added : "+ blogItem);
-           res.redirect("/blogs")
-       }
+    Blog.create(req.body.blog, function (err, blogItem) {
+        if (err)
+            console.log("Error :" + err);
+        else {
+            console.log("Added : " + blogItem);
+            res.redirect("/blogs")
+        }
 
     });
 
 });
+
+/**
+ * Show route
+ */
+app.get("/blogs/:id",function (req,res) {
+   res.send("Welcome to id :" + req.params.id);
+});
+
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
