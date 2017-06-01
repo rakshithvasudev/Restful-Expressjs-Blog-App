@@ -1,0 +1,10 @@
+<%include ./partials/header.ejs%>
+<div class="ui main text container segment">
+    <div class="ui huge header"><%=blog.title%></div>
+    <div class="blog">
+        <img src="<%= blog.image%>">
+        <p><%= blog.body%></p>
+        <span><%= blog.created%></span>
+    </div>
+</div>
+<%include ./partials/footer.ejs%>
