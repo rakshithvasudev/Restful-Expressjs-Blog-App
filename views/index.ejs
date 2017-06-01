@@ -1,3 +1,4 @@
+<% include ./partials/header.ejs%>
 <h1>This is the index</h1>
 <% blogs.forEach(function (blog) { %>
     <div class="blog">
@@ -7,3 +8,4 @@
         <p><%= blog.created%></p>
     </div>
 <%})%>
+<% include ./partials/footer.ejs%>
