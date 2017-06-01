@@ -23,10 +23,13 @@ var Blog = mongoose.model("Blog", {
     created: {type: Date, default: Date.now()}
 });
 
+
 /**
  * RESTful Routes
  */
-
+app.get("/blogs", function (req, res) {
+    res.render("index")
+});
 
 
 app.get('/', function (req, res) {
