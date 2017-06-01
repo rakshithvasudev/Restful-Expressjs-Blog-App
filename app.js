@@ -81,6 +81,18 @@ app.get("/blogs/:id", function (req, res) {
 });
 
 /**
+ * Edit route
+ */
+app.get("/blogs/:id/edit", function (req, res) {
+    Blog.findbyId(req.params.id, function (err, blogItem) {
+        if (err)
+            console.log("Couldn't find element bearing ID :" + req.params.id);
+        else
+            res.render("edit", {blog: blogItem});
+    });
+});
+
+/**
  * Server setup
  */
 app.listen(3000, function () {
