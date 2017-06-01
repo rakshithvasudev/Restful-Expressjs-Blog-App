@@ -27,18 +27,22 @@ var Blog = mongoose.model("Blog", {
 /**
  * RESTful Routes
  */
-app.get("/blogs", function (req, res) {
-    Blog.find({},function (err,blogs) {
-        if(err)
-            console.log("Error: "+ err);
-        else
-            res.render("index",{blogs:blogs});
-    });
-});
-
 
 app.get('/', function (req, res) {
     res.redirect("/blogs");
+});
+
+app.get("/blogs", function (req, res) {
+    Blog.find({}, function (err, blogs) {
+        if (err)
+            console.log("Error: " + err);
+        else
+            res.render("index", {blogs: blogs});
+    });
+});
+
+app.get("/blogs/new", function (req, res) {
+    res.render("new")
 });
 
 app.listen(3000, function () {
