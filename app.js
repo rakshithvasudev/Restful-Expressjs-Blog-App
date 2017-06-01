@@ -45,6 +45,16 @@ app.get("/blogs/new", function (req, res) {
     res.render("new")
 });
 
+app.post("/blogs", function (req, res) {
+    //req,body.blog contains all the attributes of blog.
+    Blog.create(req.body.blog,function (err,blogItem) {
+       if(err)
+           console.log("Error :" + err);
+       else
+           console.log("Added : "+ blogItem);
+    });
+});
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });
