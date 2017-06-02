@@ -5,6 +5,7 @@
 var express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
+    method_override = require('method-override'),
     bodyParser = require('body-parser');
 
 //Config setup
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://localhost/restful_blog_app');
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(method_override("_method"));
 
 /**
  * Setting up the DB model with the schema.
@@ -81,16 +83,29 @@ app.get("/blogs/:id", function (req, res) {
 });
 
 /**
- * Edit route
+ * Show Edit route
  */
 app.get("/blogs/:id/edit", function (req, res) {
-    Blog.findbyId(req.params.id, function (err, blogItem) {
+    Blog.findById(req.params.id, function (err, blogItem) {
         if (err)
             console.log("Couldn't find element bearing ID :" + req.params.id);
         else
             res.render("edit", {blog: blogItem});
     });
 });
+
+app.put("/blogs/:id", function (req,res) {
+    Blog.findByIdAndUpdate(req.params.id,req.body.blog,function (err,blog){
+       if (err)
+           console.log("Error during update: "+ err);
+       else{
+           console.log("Added :"+blog);
+           res.redirect("/");
+       }
+
+    });
+});
+
 
 /**
  * Server setup
