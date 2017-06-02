@@ -115,15 +115,16 @@ app.put("/blogs/:id", function (req,res) {
  * findByIdAndRemove(id to delete, new object that has to be updated, callback)
  */
 app.delete("/blogs/:id", function (req,res) {
-    Blog.findByIdAndRemove(req.params.id,req.body.blog,function (err,blog) {
-      if (err)
-          console.log("Error during delete: "+ err);
-      else{
-          console.log("Deleted :"+blog);
-          res.redirect("/");
-      }
-
-   });
+   //  Blog.findByIdAndRemove(req.params.id,req.body.blog,function (err,blog) {
+   //    if (err)
+   //        console.log("Error during delete: "+ err);
+   //    else{
+   //        console.log("Deleted :"+blog);
+   //        res.redirect("/");
+   //    }
+   //
+   // });
+    res.send("Delete route reached");
 });
 
 /**
