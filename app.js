@@ -94,6 +94,10 @@ app.get("/blogs/:id/edit", function (req, res) {
     });
 });
 
+/**
+ * Handle Update route
+ * findByIdAndUpdate(id to delete, new object that has to be updated, callback)
+ */
 app.put("/blogs/:id", function (req,res) {
     Blog.findByIdAndUpdate(req.params.id,req.body.blog,function (err,blog){
        if (err)
@@ -106,6 +110,21 @@ app.put("/blogs/:id", function (req,res) {
     });
 });
 
+/**
+ * Delete route
+ * findByIdAndRemove(id to delete, new object that has to be updated, callback)
+ */
+app.delete("/blogs/:id", function (req,res) {
+    Blog.findByIdAndRemove(req.params.id,req.body.blog,function (err,blog) {
+      if (err)
+          console.log("Error during delete: "+ err);
+      else{
+          console.log("Deleted :"+blog);
+          res.redirect("/");
+      }
+
+   });
+});
 
 /**
  * Server setup
